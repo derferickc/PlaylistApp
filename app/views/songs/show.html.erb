@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>dojomusichub</title>
+</head>
+<body>
+	<a href='/songs'>Dashboard</a>
+<% @songs.each do |song| %>
+	<p>Others who added - <%= song.artist %> - <%= song.title %></p>
+<% end %>
+
+	<table>
+	  <tr>
+	    <th>Name</td>
+	    <th>Times Added</th>
+	  </tr>
+	  <% @playlists.each do |playlist| %>
+	  <tr>
+	  	<td><a href='/users/<%= playlist.user_id %>'><%= playlist.user.first_name %></a></td>
+	  	<td><%= @playlists.where(user: User.find(playlist.user_id)).count %></td>
+	  </tr>	
+	  <% end %>
+	</table>
